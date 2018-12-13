@@ -18,6 +18,7 @@ namespace WindowsFormsApp1
         const int NAME_MAX_CHARACTERS = 15;
         public bool timerush = false;
         public bool run = false;
+        public bool test = true;
 
 
         public Form1()
