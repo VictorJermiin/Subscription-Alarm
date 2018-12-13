@@ -20,6 +20,7 @@ namespace WindowsFormsApp1
         public bool run = false;
 
 
+
         public Form1()
         {
             InitializeComponent();
