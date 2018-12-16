@@ -24,8 +24,7 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
-            Hide();
-            WindowState = FormWindowState.Minimized;
+            //FormClosing += Form1_FormClosing;
 
             if (System.IO.File.Exists("Date1_File.txt"))
             {
@@ -188,13 +187,17 @@ namespace WindowsFormsApp1
 
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
-            if (this.Visible)
+            if (Visible)
             {
                 notifyIcon1.Visible = true;
             }
             else
             {
-                dodisthing();
+                if (e.Button == MouseButtons.Left)
+                {
+                    notifyIcon1.Visible = false;
+                    dodisthing();
+                }
             }
         }
 
@@ -212,6 +215,7 @@ namespace WindowsFormsApp1
         {
             if (WindowState == FormWindowState.Minimized)
             {
+                notifyIcon1.Visible = true;
                 Hide();
                 WindowState = FormWindowState.Normal;
             }
@@ -219,6 +223,14 @@ namespace WindowsFormsApp1
             {
                 WindowState = FormWindowState.Normal;
             }
+        }
+
+        private void Form1_FormClosing_1(object sender, FormClosingEventArgs e)
+        {
+            notifyIcon1.Visible = true;
+            Hide();
+            WindowState = FormWindowState.Normal;
+            e.Cancel = true;
         }
     }
 }
