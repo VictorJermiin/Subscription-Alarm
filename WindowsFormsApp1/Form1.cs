@@ -25,7 +25,6 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
-            //FormClosing += Form1_FormClosing;
 
             if (System.IO.File.Exists("Date1_File.txt"))
             {
