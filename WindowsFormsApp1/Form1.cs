@@ -19,6 +19,7 @@ namespace WindowsFormsApp1
         public bool timerush = false;
         public bool run = false;
         public bool test = true;
+        public bool end = false;
 
 
         public Form1()
@@ -200,15 +201,20 @@ namespace WindowsFormsApp1
                 }
             }
         }
-
-        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        private void contextMenuStrip1_MouseClick(object sender, MouseEventArgs e)
         {
-            notifyIcon1.Visible = false;
-            Application.Exit();
-        }
-        private void showToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dodisthing();
+            if (Visible)
+            {
+                notifyIcon1.Visible = true;
+            }
+            else
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    notifyIcon1.Visible = false;
+                    dodisthing();
+                }
+            }
         }
 
         private void Form1_SizeChanged(object sender, EventArgs e)
@@ -225,12 +231,22 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            notifyIcon1.Visible = false;
+            end = true;
+            Application.Exit();
+        }
+
         private void Form1_FormClosing_1(object sender, FormClosingEventArgs e)
         {
-            notifyIcon1.Visible = true;
-            Hide();
-            WindowState = FormWindowState.Normal;
-            e.Cancel = true;
+            if (end == false)
+            {
+                notifyIcon1.Visible = true;
+                Hide();
+                WindowState = FormWindowState.Normal;
+                e.Cancel = true;
+            }
         }
     }
 }
